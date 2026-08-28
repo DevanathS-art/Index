@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ARISE Shopping CTF</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    text-align: center;
+    padding: 25px;
+    font-size: 32px;
+    color: #00ffcc;
+    text-shadow: 0 0 15px #00ffaa;
+    letter-spacing: 3px;
+  }
+  .wallet {
+    text-align: center;
+    font-size: 22px;
+    margin: 20px;
+  }
+  .products {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px;
+  }
+  .product {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,255,204,0.3);
+    margin: 15px;
+    padding: 20px;
+    width: 220px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .product img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .product:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #00ffcc;
+  }
+  button {
+    display: block;
+    margin: 30px auto;
+    padding: 14px 28px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(90deg, #00ffcc, #00ffaa);
+    color: #111;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.3s;
+  }
+  button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px #00ffaa;
+  }
+  #result {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #00ffcc;
+    text-align: center;
+    padding: 20px;
+    background: #000;
+    border-radius: 10px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 20px #00ffaa;
+    font-family: monospace;
+  }
+</style>
+</head>
+<body>
+  <header>🛒 ARISE Shopping Challenge</header>
+  <div class="wallet">Your Balance: <span id="balance"></span> $</div>
+
+  <div class="products">
+    <div class="product"><img src="https://via.placeholder.com/220x150?text=Laptop"><h3>Laptop</h3><p>Price: $5</p></div>
+    <div class="product"><img src="https://via.placeholder.com/220x150?text=Headphones"><h3>Headphones</h3><p>Price: $5</p></div>
+    <div class="product"><img src="https://via.placeholder.com/220x150?text=Shoes"><h3>Shoes</h3><p>Price: $5</p></div>
+    <div class="product"><img src="https://via.placeholder.com/220x150?text=Watch"><h3>Watch</h3><p>Price: $5</p></div>
+    <div class="product"><img src="https://via.placeholder.com/220x150?text=Backpack"><h3>Backpack</h3><p>Price: $5</p></div>
+  </div>
+
+  <button onclick="checkout()">Checkout All</button>
+  <div id="result"></div>
+
+  <script>
+    let balance = 5;
+    const params = new URLSearchParams(window.location.search);
+    if(params.has("bonus")) {
+      let extra = parseInt(params.get("bonus"));
+      if(!isNaN(extra)) balance += extra;
+    }
+    document.getElementById("balance").innerText = balance;
+
+    function checkout() {
+      if(balance >= 25) {
+        const outputText = "00000000  46 6c 61 67 5f 48 75 5f 49 74 68 75 5f 54 68 61";
+        document.getElementById("result").innerText = "🎉 Purchase Successful!\n\n" + outputText;
+      } else {
+        document.getElementById("result").innerText = "❌ Not enough balance!";
+      }
+    }
+  </script>
+</body>
+</html>
