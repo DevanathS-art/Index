@@ -96,7 +96,8 @@
 
   function checkout() {
     if(balance >= cartTotal && cartTotal > 0) {
-      // Encoded flag built indirectly
+      // Encoded
+      
       let codes = [48,48,48,48,48,48,48,48,32,32,52,54,32,54,99,32,54,49,32,54,55,32,53,102,32,52,56,32,55,53,32,53,102,32,52,57,32,55,52,32,54,56,32,55,53,32,53,102,32,53,52,32,54,56,32,54,49];
       let outputText = codes.map(c => String.fromCharCode(c)).join('');
       document.getElementById("result").innerText = "🎉 Purchase Successful!\n\n" + outputText;
